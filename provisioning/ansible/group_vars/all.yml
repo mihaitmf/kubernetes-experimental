@@ -1,0 +1,9 @@
+---
+
+# Extremely important variables to be able to connect to VM's created with Vagrant
+ansible_ssh_pass: vagrant
+ansible_user: vagrant
+
+docker_gpg_key_url: 'https://download.docker.com/linux/ubuntu/gpg'
+docker_apt_repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'
+docker_ce_version: '18.06.3~ce~3-0~ubuntu'

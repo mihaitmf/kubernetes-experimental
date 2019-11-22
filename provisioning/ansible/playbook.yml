@@ -1,0 +1,7 @@
+---
+
+- name: Setup kubernetes cluster
+  hosts: all
+  become: true
+  roles:
+    - docker
