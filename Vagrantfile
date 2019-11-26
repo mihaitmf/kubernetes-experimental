@@ -90,15 +90,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Provision the rest of the machines using Ansible
     # !!! Note: very important to define ansible_user and ansible_ssh_pass in group_vars/all.yml
-    kube_ansible_config.vm.provision 'shell', inline: <<-SHELL
-      apt-get update
-      apt-get install -y software-properties-common python3 sshpass
-      apt-get install -y python3-pip
-      
-      pip3 install ansible
-
-      cd /vagrant/provisioning/ansible
-      ansible-playbook -i hosts playbook.yml
-    SHELL
+    kube_ansible_config.vm.provision 'ansible-provisioning',
+        name: 'Provision all the machines with Ansible',
+        type: 'shell',
+        run: 'once',
+        path: 'provisioning/scripts/ansible-provisioning.sh'
   end
 end
