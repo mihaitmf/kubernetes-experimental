@@ -1,8 +1,15 @@
 ---
 
-- name: Setup kubernetes cluster
+- name: Setup kubernetes cluster with kubeadm
   hosts: all
   become: true
   roles:
     - swap-disable
     - docker
+    - kubeadm
+
+- name: Initialize master
+  hosts: master
+  become: true
+  roles:
+    - kubeadm-master
