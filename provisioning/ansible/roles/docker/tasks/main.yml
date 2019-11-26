@@ -16,13 +16,15 @@
     repo: "{{ docker_apt_repo }}"
     state: present
 
-- name: Install docker specific version
+- name: Install specific version of Docker
   apt:
     name: "docker-ce={{ docker_ce_version }}"
     state: present
     update_cache: yes
 
-- name: Add vagrant user to docker group
+- name: Add Vagrant user to Docker group
   user:
     name: vagrant
     group: docker
+  notify:
+    - docker status
