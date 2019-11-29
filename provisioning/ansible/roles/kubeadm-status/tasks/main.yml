@@ -1,0 +1,6 @@
+---
+
+- name: Check if cluster is already initialized and register output as variable
+  command: kubectl get cs
+  register: cluster_status
+  ignore_errors: yes

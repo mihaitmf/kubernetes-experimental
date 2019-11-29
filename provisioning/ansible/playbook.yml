@@ -8,8 +8,16 @@
     - docker
     - kubeadm
 
-- name: Initialize master
+- name: Check if cluster is already initialized and register output as variable
   hosts: master
   become: true
   roles:
-    - kubeadm-master
+    - kubeadm-status
+  tags: config-master
+
+- name: Initialize kubeadm master
+  hosts: master
+  become: true
+  roles:
+    - { role: kubeadm-master, when: cluster_status is failed }
+  tags: config-master
