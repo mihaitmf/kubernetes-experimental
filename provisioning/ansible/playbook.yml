@@ -12,12 +12,12 @@
   hosts: master
   become: true
   roles:
-    - kubeadm-status
+    - cluster-initialized-check
   tags: config-master
 
-- name: Initialize kubeadm master
+- name: Initialize kubeadm master (only if it is not already)
   hosts: master
   become: true
   roles:
-    - { role: kubeadm-master, when: cluster_status is failed }
+    - { role: kubeadm-master, when: cluster_initialized is failed }
   tags: config-master
