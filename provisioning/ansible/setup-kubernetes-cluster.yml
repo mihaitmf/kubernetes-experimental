@@ -10,7 +10,6 @@
 
 - name: Check if cluster is already initialized and register output as variable
   hosts: master
-  become: true
   roles:
     - cluster-initialized-check
   tags: config-master
