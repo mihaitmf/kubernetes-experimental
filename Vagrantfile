@@ -5,7 +5,7 @@ Vagrant.require_version '>= 2.1'
 
 VAGRANTFILE_API_VERSION = '2'
 VM_IMAGE_NAME = 'ubuntu/bionic64'
-NODES_COUNT = 2
+WORKER_NODES_COUNT = 2
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -49,24 +49,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         path: 'provisioning/scripts/enable-ssh-password-authentication.sh'
   end
 
-  # Configure multiple kube-node machines
-  (1..NODES_COUNT).each do |i|
-    config.vm.define "kube-node-#{i}" do |kube_node_config|
-      kube_node_config.vm.hostname = "kube-node-#{i}"
-      kube_node_config.vm.network 'private_network', ip: "192.168.11.#{i + 20}"
+  # Configure multiple kube-worker machines
+  (1..WORKER_NODES_COUNT).each do |i|
+    config.vm.define "kube-worker#{i}" do |kube_worker_config|
+      kube_worker_config.vm.hostname = "kube-worker#{i}"
+      kube_worker_config.vm.network 'private_network', ip: "192.168.11.#{i + 20}"
 
-      kube_node_config.vm.box = VM_IMAGE_NAME
-      kube_node_config.vm.provider 'virtualbox' do |vb|
-        vb.name = "kube-node-#{i}-VM"
+      kube_worker_config.vm.box = VM_IMAGE_NAME
+      kube_worker_config.vm.provider 'virtualbox' do |vb|
+        vb.name = "kube-worker#{i}-VM"
         vb.cpus = 2
         vb.memory = 2024
       end
 
-      kube_node_config.ssh.insert_key = false
-      kube_node_config.vm.synced_folder '.', '/vagrant', disabled: true
+      kube_worker_config.ssh.insert_key = false
+      kube_worker_config.vm.synced_folder '.', '/vagrant', disabled: true
 
       # Enable password authentication, this is how Ansible will connect to the machine
-      kube_node_config.vm.provision 'enable-ssh-password',
+      kube_worker_config.vm.provision 'enable-ssh-password',
           name: 'Enable ssh password authentication for Ansible',
           type: 'shell',
           run: 'once',

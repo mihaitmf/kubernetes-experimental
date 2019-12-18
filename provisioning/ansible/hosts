@@ -1,10 +1,10 @@
 [master]
 kube-master ansible_host=192.168.11.20 private_ip=192.168.11.20
 
-[nodes]
-kube-node1 ansible_host=192.168.11.21 private_ip=192.168.11.21
-kube-node2 ansible_host=192.168.11.22 private_ip=192.168.11.22
+[workers]
+kube-worker1 ansible_host=192.168.11.21 private_ip=192.168.11.21
+kube-worker2 ansible_host=192.168.11.22 private_ip=192.168.11.22
 
 [kube-cluster:children]
 master
-nodes
+workers

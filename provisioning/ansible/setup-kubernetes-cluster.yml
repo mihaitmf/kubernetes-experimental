@@ -15,7 +15,7 @@
     - cluster-initialized-check
   tags: config-master
 
-- name: Initialize the Kubernetes cluster with kubeadm (only if it is not already)
+- name: Initialize the Kubernetes cluster on master node using kubeadm (only if the cluster is not already initialized)
   hosts: master
   become: true
   roles:
