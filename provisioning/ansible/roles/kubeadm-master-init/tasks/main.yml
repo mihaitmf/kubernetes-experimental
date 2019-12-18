@@ -1,7 +1,7 @@
 ---
 
 - name: Initialize the Kubernetes cluster with kubeadm
-  command: kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address="192.168.11.20" --node-name k8s-master
+  command: kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address="192.168.11.20"
 
 - name: Create directory to store kube config file
   become: false
