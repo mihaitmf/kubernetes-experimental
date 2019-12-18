@@ -40,6 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     kube_master_config.ssh.insert_key = false
     kube_master_config.vm.synced_folder '.', '/vagrant', disabled: true
+    kube_master_config.vm.synced_folder './examples', '/examples', create: true
 
     # Enable password authentication, this is how Ansible will connect to the machine
     kube_master_config.vm.provision 'enable-ssh-password',
