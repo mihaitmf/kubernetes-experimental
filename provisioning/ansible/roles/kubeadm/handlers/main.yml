@@ -1,0 +1,4 @@
+---
+
+- name: kubeadm status
+  service: name=kubeadm state=started
