@@ -1,0 +1,5 @@
+---
+
+- name: Get cluster nodes
+  command: kubectl get nodes
+  register: cluster_nodes

@@ -5,6 +5,8 @@
     src: "{{ join_command_local_path }}"
     dest: /tmp/join-command.sh
     mode: 0777
+  when: ansible_hostname not in hostvars['kube-master'].cluster_nodes.stdout
 
 - name: Join the node to cluster
   command: sh /tmp/join-command.sh
+  when: ansible_hostname not in hostvars['kube-master'].cluster_nodes.stdout
