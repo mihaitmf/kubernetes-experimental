@@ -19,5 +19,3 @@
       - "kubectl={{ kubernetes_version }}"
     state: present
     update_cache: yes
-  notify:
-    - kubeadm status

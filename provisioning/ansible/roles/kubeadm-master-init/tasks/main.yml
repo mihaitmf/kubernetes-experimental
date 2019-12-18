@@ -21,10 +21,3 @@
 - name: Setup the container networking provider (install Flannel pod network)
   become: false
   command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
-
-- name: Generate kube join command for joining the node to the Kubernetes cluster
-  command: kubeadm token create --print-join-command
-  register: join_command
-
-- name: Store join command in local file
-  local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"

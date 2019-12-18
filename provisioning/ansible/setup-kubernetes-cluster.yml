@@ -19,5 +19,19 @@
   hosts: master
   become: true
   roles:
-    - { role: kubeadm-master, when: cluster_initialized is failed }
+    - { role: kubeadm-master-init, when: cluster_initialized is failed }
   tags: config-master
+
+- name: Generate command for joining the worker nodes to the Kubernetes cluster
+  hosts: master
+  become: true
+  roles:
+    - kubeadm-get-join-command
+  tags: config-workers
+
+- name: Join the Kubernetes cluster with the worker nodes
+  hosts: workers
+  become: true
+  roles:
+    - kubeadm-worker-join
+  tags: config-workers

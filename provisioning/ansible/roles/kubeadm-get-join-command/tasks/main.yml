@@ -1,0 +1,8 @@
+---
+
+- name: Generate kube join command for joining the worker nodes to the Kubernetes cluster
+  command: kubeadm token create --print-join-command
+  register: join_command
+
+- name: Store join command in local file
+  local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="{{ join_command_local_path }}"
