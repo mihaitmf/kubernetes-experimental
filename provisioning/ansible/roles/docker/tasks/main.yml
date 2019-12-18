@@ -2,7 +2,11 @@
 
 - name: Install packages that allow apt to be used over HTTPS
   apt:
-    name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
     state: present
     update_cache: yes
 
@@ -16,7 +20,7 @@
     repo: "{{ docker_apt_repo }}"
     state: present
 
-- name: Install specific version of Docker
+- name: Install a specific version of Docker listed as supported in the latest kubernetes changelog (https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.17.md)
   apt:
     name: "docker-ce={{ docker_ce_version }}"
     state: present

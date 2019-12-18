@@ -1,5 +1,5 @@
 ---
 
-docker_ce_version: ''
-docker_apt_repo: ''
-docker_gpg_key_url: ''
+docker_gpg_key_url: 'https://download.docker.com/linux/ubuntu/gpg'
+docker_apt_repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'
+docker_ce_version: 'defined in group_vars'
