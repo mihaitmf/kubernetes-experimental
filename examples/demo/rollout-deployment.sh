@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Run on master node
+
 kubectl create -f deployment-definition.yml --record
 
 kubectl get all -o wide

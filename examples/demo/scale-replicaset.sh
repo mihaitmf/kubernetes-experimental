@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Run on master node
+
 # Modify the replicas property in the definition file
 sed -i 's/replicas: 3/replicas: 6/g' replicaset-definition.yml
 kubectl replace -f replicaset-definition.yml
