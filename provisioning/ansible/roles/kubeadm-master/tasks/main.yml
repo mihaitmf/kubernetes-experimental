@@ -7,11 +7,12 @@
   file:
     path: /home/vagrant/.kube
     state: directory
+    mode: 0755
 
-- name: Setup the kube config file for the vagrant user to access the Kubernetes cluster
+- name: Setup the kube config file for the vagrant user to be able to access the Kubernetes cluster
   command: cp -n /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 
-- name: Change kubeconfig file permission
+- name: Change kube config file permission
   file:
     path: /home/vagrant/.kube/config
     owner: vagrant

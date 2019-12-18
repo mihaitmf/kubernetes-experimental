@@ -1,6 +1,6 @@
 ---
 
-- name: Setup kubernetes cluster with kubeadm
+- name: Install Kubernetes and dependencies
   hosts: all
   become: true
   roles:
@@ -15,7 +15,7 @@
     - cluster-initialized-check
   tags: config-master
 
-- name: Initialize kubeadm master (only if it is not already)
+- name: Initialize the Kubernetes cluster with kubeadm (only if it is not already)
   hosts: master
   become: true
   roles:

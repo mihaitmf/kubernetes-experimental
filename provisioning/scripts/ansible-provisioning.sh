@@ -8,4 +8,4 @@ grep -Pq 'cd /vagrant/provisioning/ansible' /home/vagrant/.bashrc || echo -e "\n
 
 # Provision the rest of the machines defined in the "hosts" inventory file with Ansible
 cd /vagrant/provisioning/ansible
-ansible-playbook -i hosts playbook.yml
+ansible-playbook -i hosts setup-kubernetes-cluster.yml
