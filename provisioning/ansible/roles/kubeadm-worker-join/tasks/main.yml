@@ -7,4 +7,4 @@
     mode: 0777
 
 - name: Join the node to cluster
-  command: /tmp/join-command.sh
+  command: sh /tmp/join-command.sh
