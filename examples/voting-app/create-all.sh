@@ -19,3 +19,8 @@ kubectl get all -o wide
 sleep 5
 
 kubectl get all -o wide
+
+# Try to access one of the frontend apps which are running on the worker nodes
+curl 192.168.11.22:30080 # for the voting-app
+curl 192.168.11.22:30081 # for the result-app
+# Or try directly from a browser
